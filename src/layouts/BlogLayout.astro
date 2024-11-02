@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  date?: string;
+}
+
+const { title, date } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+      </div>
+    </nav>
+    <main>
+      <article>
+        <h1>{title}</h1>
+        {date && <time>{date}</time>}
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.6;
+    background-color: #111;
+    color: #fff;
+  }
+  
+  .nav-links {
+    margin-bottom: 2rem;
+  }
+  
+  .nav-links a {
+    margin-right: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  h1 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  
+  time {
+    color: #999;
+    display: block;
+    margin-bottom: 2rem;
+  }
+</style>

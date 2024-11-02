@@ -1,0 +1,59 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const posts = await Astro.glob('./blog/*.md');
+---
+
+<BlogLayout title="Blog Posts">
+  <h1>Latest Posts</h1>
+  <ul class="posts">
+    {posts.map((post) => (
+      <li>
+        <a href={post.url}>
+          <h2>{post.frontmatter.title}</h2>
+          <time>{post.frontmatter.date}</time>
+          <p>{post.frontmatter.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BlogLayout>
+
+<style>
+  .posts {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .posts li {
+    margin-bottom: 2rem;
+  }
+  
+  .posts a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: background 0.2s;
+  }
+  
+  .posts a:hover {
+    background: #f0f0f0;
+  }
+  
+  .posts h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .posts time {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .posts p {
+    margin: 0.5rem 0 0;
+  }
+</style>
