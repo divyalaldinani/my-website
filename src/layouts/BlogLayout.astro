@@ -5,6 +5,7 @@ interface Props {
 }
 
 const { title, date } = Astro.props;
+const isHomePage = title === "My Blog";
 ---
 
 <!doctype html>
@@ -16,58 +17,179 @@ const { title, date } = Astro.props;
   </head>
   <body>
     <nav>
-      <div class="nav-links">
+      <div class="nav-container">
         <a href="/">Home</a>
         <a href="/blog">Blog</a>
       </div>
     </nav>
+    {isHomePage && 
+      <header>
+        <h1>hello, i am <span class="name">Divya</span></h1>
+        <div class="about-section">
+          <h2 class="about-title">who am I?</h2>
+          <p class="bio">
+            I'm a coding prodigy with a passion for algorithms and a love for cracking challenges that others shy away from. 
+            Whether it's competing in coding battles or diving into deep learning projects, I bring an edge of curiosity and 
+            relentless drive. With a side of psychology to keep things interesting, I enjoy blending tech with a human touch.
+          </p>
+        </div>
+        <div class="interests">
+          <h2>my interests..</h2>
+          <div class="interests-container">
+            <div class="interest-item">
+              <span class="interest-icon">∑</span>
+              <span class="interest-text">Mathematics</span>
+            </div>
+            <div class="interest-item">
+              <span class="interest-icon">🧠</span>
+              <span class="interest-text">Deep Learning</span>
+            </div>
+            <div class="interest-item">
+              <span class="interest-icon">ψ</span>
+              <span class="interest-text">Psychology</span>
+            </div>
+          </div>
+        </div>
+      </header>
+    }
     <main>
-      <article>
-        <h1>{title}</h1>
-        {date && <time>{date}</time>}
-        <slot />
-      </article>
+      <slot />
     </main>
+    <footer>
+      <p>figuring out</p>
+      <a href="https://x.com/DivyaaHere">@DivyaaHere</a>
+    </footer>
   </body>
 </html>
 
 <style>
-  :root {
-    color-scheme: dark;
-  }
-  
   body {
     font-family: system-ui, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    line-height: 1.6;
-    background-color: #111;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
     color: #fff;
+    line-height: 1.6;
   }
-  
-  .nav-links {
-    margin-bottom: 2rem;
+
+  .nav-container {
+    padding: 20px 5%;
   }
-  
-  .nav-links a {
-    margin-right: 1rem;
+
+  nav {
+    margin-bottom: 40px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+  }
+
+  nav a:hover {
+    opacity: 0.8;
+  }
+
+  header {
+    margin: 60px 0;
+    padding: 0 5%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .name {
+    color: #4299e1;
+  }
+
+  .about-section {
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-title {
+    text-align: left;
+    font-size: 1.8rem;
+    margin: 40px 0 20px;
+  }
+
+  .bio {
+    text-align: left;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .interests {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 40px 0 20px;
+  }
+
+  .interests-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .interest-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #4299e1;
+    border-radius: 10px;
+    transition: transform 0.2s, border-color 0.2s;
+    width: 140px;
+  }
+
+  .interest-item:hover {
+    transform: translateY(-5px);
+    border-color: #63b3ed;
+  }
+
+  .interest-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #4299e1;
+  }
+
+  .interest-text {
+    font-size: 1.1rem;
+  }
+
+  main {
+    margin: 40px 0;
+    padding: 0 5%;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px 5%;
+  }
+
+  footer p {
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  footer a {
     color: #fff;
     text-decoration: none;
   }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  h1 {
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  
-  time {
-    color: #999;
-    display: block;
-    margin-bottom: 2rem;
+
+  footer a:hover {
+    opacity: 0.8;
   }
 </style>

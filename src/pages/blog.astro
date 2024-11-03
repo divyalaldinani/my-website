@@ -1,4 +1,4 @@
----
+<!-- ---
 import BlogLayout from '../layouts/BlogLayout.astro';
 
 const posts = await Astro.glob('./blog/*.md');
@@ -56,4 +56,12 @@ const posts = await Astro.glob('./blog/*.md');
   .posts p {
     margin: 0.5rem 0 0;
   }
-</style>
+</style> -->
+
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+---
+
+<BlogLayout title="Blog Posts">
+  <p style="text-align: center;">Coming soon...</p>
+</BlogLayout>
